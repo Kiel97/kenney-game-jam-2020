@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://images/weapons/sword_bronze.png" type="Texture" id=1]
+
+[node name="Sword" type="Node2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 28.9914, -35.3553 )
+texture = ExtResource( 1 )
