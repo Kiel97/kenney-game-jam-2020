@@ -14,7 +14,7 @@ func _physics_process(delta) -> void:
 	
 	velocity = move_and_slide(velocity, Vector2(0, -1))
 
-func get_input() -> void:	
+func get_input() -> void:
 	var left = Input.is_action_pressed("left")
 	var right = Input.is_action_pressed("right")
 	var jump = Input.is_action_just_pressed("jump")
@@ -22,8 +22,17 @@ func get_input() -> void:
 	velocity.x = 0
 	if right:
 		velocity.x += MOVE_SPEED
-	if left:
+		flip_sprites(true)
+		$AnimationPlayer.play("walk")
+	elif left:
 		velocity.x -= MOVE_SPEED
+		flip_sprites(false)
+		$AnimationPlayer.play("walk")
+	else:
+		$AnimationPlayer.play("idle")
 	
 	if jump:
 		velocity.y = JUMP_SPEED
+
+func flip_sprites(is_right: bool) -> void:
+	$Body.scale = Vector2(1,1) if is_right else Vector2(-1,1)

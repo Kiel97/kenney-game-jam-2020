@@ -311,26 +311,28 @@ height = 134.766
 script = ExtResource( 5 )
 
 [node name="Body" type="Sprite" parent="."]
+z_index = 3
 texture = ExtResource( 3 )
 flip_h = true
 
 [node name="BackLeg" type="Sprite" parent="Body"]
 modulate = Color( 0.74902, 0.74902, 0.74902, 1 )
 position = Vector2( 0, 30 )
-z_index = -2
+z_index = 2
 texture = ExtResource( 2 )
 offset = Vector2( 0, 25 )
 flip_h = true
 
 [node name="ForeLeg" type="Sprite" parent="Body"]
 position = Vector2( 0, 30 )
-z_index = -1
+z_index = 4
 texture = ExtResource( 2 )
 offset = Vector2( 0, 25 )
 flip_h = true
 
 [node name="Head" type="Sprite" parent="Body"]
 position = Vector2( 0, -30.3521 )
+z_index = 3
 texture = ExtResource( 4 )
 offset = Vector2( 0, -30 )
 flip_h = true
@@ -338,14 +340,14 @@ flip_h = true
 [node name="BackArm" type="Sprite" parent="Body"]
 modulate = Color( 0.815686, 0.815686, 0.815686, 1 )
 position = Vector2( 0, -15 )
-z_index = -3
+z_index = 1
 texture = ExtResource( 1 )
 offset = Vector2( 0, 20 )
 flip_h = true
 
 [node name="ForeArm" type="Sprite" parent="Body"]
 position = Vector2( 0, -15 )
-z_index = 2
+z_index = 5
 texture = ExtResource( 1 )
 offset = Vector2( 0, 20 )
 flip_h = true
