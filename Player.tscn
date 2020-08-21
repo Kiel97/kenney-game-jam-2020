@@ -6,20 +6,48 @@
 [ext_resource path="res://images/characters/Player male/male_head.png" type="Texture" id=4]
 
 [node name="PlayerRig" type="Node2D"]
-
-[node name="ForeLeg" type="Sprite" parent="."]
-position = Vector2( 0, 56.1171 )
-texture = ExtResource( 2 )
+__meta__ = {
+"_edit_horizontal_guides_": [  ]
+}
 
 [node name="Body" type="Sprite" parent="."]
 texture = ExtResource( 3 )
+flip_h = true
 
-[node name="Head" type="Sprite" parent="."]
+[node name="BackLeg" type="Sprite" parent="Body"]
+modulate = Color( 0.74902, 0.74902, 0.74902, 1 )
+position = Vector2( 0, 30 )
+z_index = -2
+texture = ExtResource( 2 )
+offset = Vector2( 0, 25 )
+flip_h = true
+
+[node name="ForeLeg" type="Sprite" parent="Body"]
+position = Vector2( 0, 30 )
+z_index = -1
+texture = ExtResource( 2 )
+offset = Vector2( 0, 25 )
+flip_h = true
+
+[node name="Head" type="Sprite" parent="Body"]
 position = Vector2( 0, -30.3521 )
 texture = ExtResource( 4 )
 offset = Vector2( 0, -30 )
+flip_h = true
 
-[node name="ForeArm" type="Sprite" parent="."]
-position = Vector2( 0, -15.7008 )
+[node name="BackArm" type="Sprite" parent="Body"]
+modulate = Color( 0.815686, 0.815686, 0.815686, 1 )
+position = Vector2( 0, -15 )
+z_index = -1
 texture = ExtResource( 1 )
 offset = Vector2( 0, 20 )
+flip_h = true
+
+[node name="ForeArm" type="Sprite" parent="Body"]
+position = Vector2( 0, -15 )
+z_index = 2
+texture = ExtResource( 1 )
+offset = Vector2( 0, 20 )
+flip_h = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
