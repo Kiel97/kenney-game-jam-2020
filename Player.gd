@@ -15,6 +15,7 @@ func _physics_process(delta) -> void:
 	var global_mouse_pos = get_global_mouse_position()
 	flip_sprites(global_mouse_pos > self.position)
 	$Body/Head.look_at(global_mouse_pos)
+	$Body/ForeArm.look_at(global_mouse_pos)
 	
 	velocity = move_and_slide(velocity, Vector2(0, -1))
 
