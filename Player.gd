@@ -35,7 +35,7 @@ func get_input() -> void:
 	else:
 		anim_player.play("idle")
 	
-	if jump:
+	if jump and is_on_floor():
 		velocity.y = JUMP_SPEED
 
 func flip_sprites(is_right: bool) -> void:
