@@ -8,15 +8,16 @@ var velocity : Vector2 = Vector2()
 
 onready var anim_player = $AnimationPlayer
 
-func _physics_process(delta) -> void:
-	velocity.y += GRAVITY * delta
-	get_input()
-	
+func _process(_delta: float) -> void:
 	var global_mouse_pos = get_global_mouse_position()
 	flip_sprites(global_mouse_pos > self.position)
 	$Body/Head.look_at(global_mouse_pos)
 	$Body/ForeArm.look_at(global_mouse_pos)
-	
+
+func _physics_process(delta) -> void:
+	velocity.y += GRAVITY * delta
+	get_input()
+
 	velocity = move_and_slide(velocity, Vector2(0, -1))
 
 func get_input() -> void:
