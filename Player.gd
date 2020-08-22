@@ -16,7 +16,7 @@ func _process(_delta: float) -> void:
 	$Body/Head.look_at(global_mouse_pos)
 	
 	if arm_look_at_mouse:
-		$Body/ForeArm.look_at(global_mouse_pos)
+		$Body/ForeArm/RotationPoint/Sprite.look_at(global_mouse_pos)
 
 func _unhandled_input(event: InputEvent) -> void:
 		if event.is_action_pressed("attack") and not attack_anim.is_playing():
