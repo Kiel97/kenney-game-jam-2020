@@ -4,15 +4,24 @@ const GRAVITY = 2000.0
 const MOVE_SPEED = 500
 const JUMP_SPEED = -960
 
-var velocity : Vector2 = Vector2()
-
 onready var anim_player = $AnimationPlayer
+onready var attack_anim = $AttackAnim
+
+var velocity : Vector2 = Vector2()
+var arm_look_at_mouse: bool = true
 
 func _process(_delta: float) -> void:
 	var global_mouse_pos = get_global_mouse_position()
 	flip_sprites(global_mouse_pos > self.position)
 	$Body/Head.look_at(global_mouse_pos)
-	$Body/ForeArm.look_at(global_mouse_pos)
+	
+	if arm_look_at_mouse:
+		$Body/ForeArmPoint.look_at(global_mouse_pos)
+
+func _unhandled_input(event: InputEvent) -> void:
+		if event.is_action_pressed("attack") and not $AttackAnim.is_playing():
+			arm_look_at_mouse = false
+			$AttackAnim.play("attack")
 
 func _physics_process(delta) -> void:
 	velocity.y += GRAVITY * delta
@@ -40,3 +49,7 @@ func get_input() -> void:
 
 func flip_sprites(is_right: bool) -> void:
 	$Body.scale = Vector2(1,1) if is_right else Vector2(-1,1)
+
+func _on_AttackAnim_animation_finished(anim_name: String) -> void:
+	if anim_name == "attack":
+		arm_look_at_mouse = true

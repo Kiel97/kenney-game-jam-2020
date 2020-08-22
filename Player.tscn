@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://images/characters/Player male/male_arm.png" type="Texture" id=1]
 [ext_resource path="res://images/characters/Player male/male_leg.png" type="Texture" id=2]
@@ -11,7 +11,7 @@
 resource_name = "idle"
 length = 0.1
 tracks/0/type = "value"
-tracks/0/path = NodePath("Body/ForeArm:position")
+tracks/0/path = NodePath("Body/ForeArmPoint/ForeArm:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -136,7 +136,7 @@ resource_name = "walk"
 length = 0.9
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Body/ForeArm:position")
+tracks/0/path = NodePath("Body/ForeArmPoint/ForeArm:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -260,6 +260,23 @@ tracks/9/keys = {
 radius = 33.0171
 height = 127.025
 
+[sub_resource type="Animation" id=4]
+resource_name = "attack"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body/ForeArmPoint/ForeArm:rotation_degrees")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.35 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -135.448, 0.0 ]
+}
+
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 5 )
 
@@ -298,17 +315,19 @@ texture = ExtResource( 1 )
 offset = Vector2( 0, 20 )
 flip_h = true
 
-[node name="ForeArm" type="Sprite" parent="Body"]
+[node name="ForeArmPoint" type="Node2D" parent="Body"]
 position = Vector2( 0, -15 )
+
+[node name="ForeArm" type="Sprite" parent="Body/ForeArmPoint"]
 z_index = 2
 texture = ExtResource( 1 )
 offset = Vector2( 0, 20 )
 flip_h = true
 
-[node name="WeaponPos" type="Position2D" parent="Body/ForeArm"]
+[node name="WeaponPos" type="Position2D" parent="Body/ForeArmPoint/ForeArm"]
 position = Vector2( 0, 42.6536 )
 
-[node name="Sword" parent="Body/ForeArm/WeaponPos" instance=ExtResource( 6 )]
+[node name="Sword" parent="Body/ForeArmPoint/ForeArm/WeaponPos" instance=ExtResource( 6 )]
 rotation = 0.841909
 z_index = -1
 
@@ -319,3 +338,7 @@ anims/walk = SubResource( 2 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 3.05176e-05, -14.5198 )
 shape = SubResource( 3 )
+
+[node name="AttackAnim" type="AnimationPlayer" parent="."]
+anims/attack = SubResource( 4 )
+[connection signal="animation_finished" from="AttackAnim" to="." method="_on_AttackAnim_animation_finished"]
