@@ -73,6 +73,11 @@ attack={
 
 2d_physics/layer_1="player"
 2d_physics/layer_2="obstacle"
+2d_physics/layer_3="gnome"
+
+[physics]
+
+2d/default_gravity=2000
 
 [rendering]
 
