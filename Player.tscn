@@ -7,6 +7,23 @@
 [ext_resource path="res://Player.gd" type="Script" id=5]
 [ext_resource path="res://Sword.tscn" type="PackedScene" id=6]
 
+[sub_resource type="Animation" id=4]
+resource_name = "attack"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("RotationPoint:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -135.0, 15.0, 0.0 ]
+}
+
 [sub_resource type="Animation" id=1]
 resource_name = "idle"
 length = 0.1
@@ -119,7 +136,7 @@ tracks/8/keys = {
 "values": [ 0.0 ]
 }
 tracks/9/type = "value"
-tracks/9/path = NodePath("Body/ForeArmPoint:position")
+tracks/9/path = NodePath("Body/ForeArm:position")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = false
@@ -244,7 +261,7 @@ tracks/8/keys = {
 "values": [ 0.0, 30.7867, -30.0888, 0.0 ]
 }
 tracks/9/type = "value"
-tracks/9/path = NodePath("Body/ForeArmPoint:position")
+tracks/9/path = NodePath("Body/ForeArm:position")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = false
@@ -259,23 +276,6 @@ tracks/9/keys = {
 [sub_resource type="CapsuleShape2D" id=3]
 radius = 33.0171
 height = 127.025
-
-[sub_resource type="Animation" id=4]
-resource_name = "attack"
-length = 0.4
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath("Body/ForeArmPoint/ForeArm:rotation_degrees")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.05, 0.35 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ 0.0, -135.448, 0.0 ]
-}
 
 [node name="Player" type="KinematicBody2D"]
 collision_mask = 2
@@ -322,22 +322,26 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="ForeArmPoint" type="Node2D" parent="Body"]
+[node name="ForeArm" type="Node2D" parent="Body"]
 position = Vector2( 0, 3.97364e-07 )
 
-[node name="ForeArm" type="Sprite" parent="Body/ForeArmPoint"]
+[node name="RotationPoint" type="Node2D" parent="Body/ForeArm"]
 position = Vector2( 0, -15 )
+
+[node name="Sprite" type="Sprite" parent="Body/ForeArm/RotationPoint"]
 z_index = 2
 texture = ExtResource( 1 )
 offset = Vector2( 0, 20 )
 flip_h = true
 
-[node name="WeaponPos" type="Position2D" parent="Body/ForeArmPoint/ForeArm"]
+[node name="WeaponPos" type="Position2D" parent="Body/ForeArm/RotationPoint/Sprite"]
 position = Vector2( 0, 42.6536 )
 
-[node name="Sword" parent="Body/ForeArmPoint/ForeArm/WeaponPos" instance=ExtResource( 6 )]
-rotation = 0.841909
+[node name="Sword" parent="Body/ForeArm/RotationPoint/Sprite/WeaponPos" instance=ExtResource( 6 )]
 z_index = -1
+
+[node name="AttackAnim" type="AnimationPlayer" parent="Body/ForeArm"]
+anims/attack = SubResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/idle = SubResource( 1 )
@@ -349,7 +353,4 @@ shape = SubResource( 3 )
 __meta__ = {
 "_edit_lock_": true
 }
-
-[node name="AttackAnim" type="AnimationPlayer" parent="."]
-anims/attack = SubResource( 4 )
-[connection signal="animation_finished" from="AttackAnim" to="." method="_on_AttackAnim_animation_finished"]
+[connection signal="animation_finished" from="Body/ForeArm/AttackAnim" to="." method="_on_AttackAnim_animation_finished"]
