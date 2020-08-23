@@ -91,7 +91,7 @@ rect_min_size = Vector2( 200, 20 )
 custom_styles/fg = SubResource( 3 )
 custom_styles/bg = SubResource( 4 )
 max_value = 1.0
-step = 0.1
+step = 0.01
 percent_visible = false
 
 [node name="GameScene" type="Node2D" parent="."]
@@ -128,34 +128,34 @@ position = Vector2( 1095.69, 402.573 )
 collision_layer = 0
 
 [node name="SpeedItem" parent="GameScene" instance=ExtResource( 5 )]
-position = Vector2( 641.754, 352.484 )
+position = Vector2( 633.279, 417.112 )
 
 [node name="SpeedItem2" parent="GameScene" instance=ExtResource( 5 )]
-position = Vector2( 748.134, 355.481 )
+position = Vector2( 739.659, 420.108 )
 
 [node name="SpeedItem3" parent="GameScene" instance=ExtResource( 5 )]
-position = Vector2( 391.537, 343.495 )
+position = Vector2( 383.061, 408.122 )
 
 [node name="SpeedItem4" parent="GameScene" instance=ExtResource( 5 )]
-position = Vector2( 280.662, 333.006 )
+position = Vector2( 272.187, 397.634 )
 
 [node name="SpeedItem5" parent="GameScene" instance=ExtResource( 5 )]
-position = Vector2( 147.313, 339 )
+position = Vector2( 138.837, 403.627 )
 
 [node name="JumpItem" parent="GameScene" instance=ExtResource( 7 )]
-position = Vector2( 220.251, 286.177 )
+position = Vector2( 218.132, 416.491 )
 
 [node name="JumpItem2" parent="GameScene" instance=ExtResource( 7 )]
-position = Vector2( 332.624, 284.678 )
+position = Vector2( 330.505, 414.992 )
 
 [node name="JumpItem3" parent="GameScene" instance=ExtResource( 7 )]
-position = Vector2( 453.987, 281.682 )
+position = Vector2( 451.868, 411.996 )
 
 [node name="JumpItem4" parent="GameScene" instance=ExtResource( 7 )]
-position = Vector2( 579.845, 284.678 )
+position = Vector2( 577.726, 414.992 )
 
 [node name="JumpItem5" parent="GameScene" instance=ExtResource( 7 )]
-position = Vector2( 687.723, 287.675 )
+position = Vector2( 685.604, 417.989 )
 [connection signal="changed_jump_boost" from="GameScene/PlayerCorr" to="." method="_on_PlayerCorr_changed_jump_boost"]
 [connection signal="changed_move_boost" from="GameScene/PlayerCorr" to="." method="_on_PlayerCorr_changed_move_boost"]
 [connection signal="body_entered" from="GameScene/Door" to="." method="_on_Door_body_entered"]

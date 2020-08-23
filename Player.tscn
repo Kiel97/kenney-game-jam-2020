@@ -88,3 +88,7 @@ anims/fall = SubResource( 2 )
 anims/idle = SubResource( 3 )
 anims/jump = SubResource( 4 )
 anims/walk = SubResource( 5 )
+
+[node name="MoveBoostDetTimer" type="Timer" parent="."]
+autostart = true
+[connection signal="timeout" from="MoveBoostDetTimer" to="." method="_on_MoveBoostDetTimer_timeout"]

@@ -7,6 +7,9 @@ const GRAVITY = 2000.0
 const BASE_MOVE_SPEED = 500
 const BASE_JUMP_SPEED = -500
 
+const MOVE_BOOST_DET_VALUE = 0.01
+const JUMP_BOOST_DET_VALUE = 0.1
+
 var move_boost = 0.0 setget set_move_boost
 var jump_boost = 0.0 setget set_jump_boost
 
@@ -36,6 +39,7 @@ func get_input() -> void:
 	
 	if jump and is_on_floor():
 		velocity.y = get_current_jump_force()
+		self.jump_boost -= JUMP_BOOST_DET_VALUE
 
 func update_animation() -> void:
 	if velocity.y < 0:
@@ -58,18 +62,19 @@ func flip_character(is_left: bool) -> void:
 
 func increase_move_boost(value: float) -> void:
 	self.move_boost += value
-	clamp(move_boost, 0, 1)
 	
 func increase_jump_force(value: float) -> void:
 	self.jump_boost += value
-	clamp(jump_boost, 0, 1)
 
 func set_move_boost(value) -> void:
+	value = clamp(value, 0, 1)
 	move_boost = value
-	print(move_boost)
 	emit_signal("changed_move_boost", move_boost)
 
 func set_jump_boost(value) -> void:
+	value = clamp(value, 0, 1)
 	jump_boost = value
-	print(jump_boost)
 	emit_signal("changed_jump_boost", jump_boost)
+
+func _on_MoveBoostDetTimer_timeout() -> void:
+	self.move_boost -= MOVE_BOOST_DET_VALUE
