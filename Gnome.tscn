@@ -6,8 +6,8 @@
 [ext_resource path="res://images/characters/Gnome/gnome_body.png" type="Texture" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 24.8647
-height = 88.591
+radius = 13.7405
+height = 57.2631
 
 [node name="Gnome" type="RigidBody2D"]
 collision_layer = 4
@@ -15,6 +15,7 @@ collision_mask = 3
 
 [node name="gnome_body" type="Sprite" parent="."]
 position = Vector2( 2.78995, 15.1735 )
+scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 4 )
 
 [node name="gnome_head" type="Sprite" parent="gnome_body"]
@@ -32,4 +33,5 @@ z_index = 2
 texture = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0.583481, 6.13938 )
 shape = SubResource( 1 )
