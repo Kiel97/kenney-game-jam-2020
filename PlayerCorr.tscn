@@ -15,7 +15,6 @@ script = ExtResource( 6 )
 modulate = Color( 0.764706, 0.764706, 0.764706, 1 )
 
 [node name="GnomeLeft" type="Node2D" parent="." index="3"]
-visible = false
 modulate = Color( 0.764706, 0.764706, 0.764706, 1 )
 position = Vector2( -21.6074, 0 )
 
