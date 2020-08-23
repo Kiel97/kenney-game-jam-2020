@@ -8,23 +8,27 @@ enum DIRECTIONS {LEFT, RIGHT}
 var current_direction = DIRECTIONS.LEFT
 var velocity : Vector2 = Vector2()
 
+var on_screen
+
 func _ready() -> void:
+	on_screen = false
 	$AnimationPlayer.play("walk")
 
 func _physics_process(delta: float) -> void:
-	velocity.y += GRAVITY * delta
-
-	velocity.x = MOVE_SPEED * (-1 if current_direction == DIRECTIONS.LEFT else 1)
-
-	velocity = move_and_slide(velocity, Vector2(0, -1))
+	if on_screen:
+		velocity.y += GRAVITY * delta
 	
-	for i in get_slide_count():
-		var collision = get_slide_collision(i)
-		if collision.collider.name == "PlayerCorr":
-			collision.collider.die()
+		velocity.x = MOVE_SPEED * (-1 if current_direction == DIRECTIONS.LEFT else 1)
 	
-	if is_on_wall():
-		change_direction()
+		velocity = move_and_slide(velocity, Vector2(0, -1))
+		
+		for i in get_slide_count():
+			var collision = get_slide_collision(i)
+			if collision.collider.name == "PlayerCorr":
+				collision.collider.die()
+		
+		if is_on_wall():
+			change_direction()
 
 func change_direction():
 	match current_direction:
@@ -38,3 +42,10 @@ func change_direction():
 			current_direction = DIRECTIONS.LEFT
 			$Sprite.flip_h = false
 	print(current_direction)
+
+
+func _on_VisibilityNotifier2D_screen_entered() -> void:
+	on_screen = true
+
+func _on_VisibilityNotifier2D_screen_exited() -> void:
+	on_screen = false

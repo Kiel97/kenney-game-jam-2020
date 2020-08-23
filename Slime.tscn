@@ -39,3 +39,10 @@ anims/walk = SubResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
+
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+position = Vector2( -17.6032, -1.50169 )
+scale = Vector2( 0.552273, 2.41827 )
+rect = Rect2( -30, -10, 120, 20 )
+[connection signal="screen_entered" from="VisibilityEnabler2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
+[connection signal="screen_exited" from="VisibilityEnabler2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
