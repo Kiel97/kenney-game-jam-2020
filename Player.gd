@@ -4,8 +4,8 @@ const GRAVITY = 2000.0
 const BASE_MOVE_SPEED = 500
 const BASE_JUMP_SPEED = -500
 
-var move_boost = 0.0
-var jump_boost = 0.0
+var move_boost = 0.0 setget set_move_boost
+var jump_boost = 0.0 setget set_jump_boost
 
 var velocity : Vector2 = Vector2()
 
@@ -54,9 +54,17 @@ func flip_character(is_left: bool) -> void:
 	$Sprite.flip_h = is_left
 
 func increase_move_boost(value: float) -> void:
-	move_boost += value
+	self.move_boost += value
 	clamp(move_boost, 0, 1)
 	
 func increase_jump_force(value: float) -> void:
-	jump_boost += value
+	self.jump_boost += value
 	clamp(jump_boost, 0, 1)
+
+func set_move_boost(value) -> void:
+	move_boost = value
+	print(move_boost)
+
+func set_jump_boost(value) -> void:
+	jump_boost = value
+	print(jump_boost)
