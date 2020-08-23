@@ -1,0 +1,112 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://MainMenu.gd" type="Script" id=1]
+[ext_resource path="res://images/fonts/game_title_font.tres" type="DynamicFont" id=2]
+[ext_resource path="res://images/fonts/Kenney Future Narrow.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://plains_tileset.tres" type="TileSet" id=4]
+[ext_resource path="res://images/backgrounds/uncolored_plain.png" type="Texture" id=5]
+[ext_resource path="res://Gnome.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=7]
+
+[sub_resource type="DynamicFont" id=1]
+size = 34
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 20
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 3 )
+
+[node name="MainMenu" type="Node"]
+script = ExtResource( 1 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MenuGUI" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="CanvasLayer/MenuGUI"]
+anchor_right = 1.0
+margin_bottom = 111.0
+custom_fonts/font = ExtResource( 2 )
+text = "
+Gnome Quest"
+align = 1
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PickToStart" type="Label" parent="CanvasLayer/MenuGUI"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -81.0
+custom_fonts/font = SubResource( 1 )
+text = "Pick gnome to start
+"
+align = 1
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BlinkTimer" type="Timer" parent="CanvasLayer/MenuGUI/PickToStart"]
+wait_time = 0.5
+autostart = true
+
+[node name="Credits" type="Label" parent="CanvasLayer/MenuGUI"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = -49.0
+margin_right = 1024.0
+custom_fonts/font = SubResource( 2 )
+text = "Created by Kiel97
+Assets by Kenney from Kenney.nl"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MenuScene" type="Node2D" parent="."]
+
+[node name="background" type="Sprite" parent="MenuScene"]
+position = Vector2( 490.019, 236.852 )
+z_index = -1000
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 2048, 1024 )
+
+[node name="Plains" type="TileMap" parent="MenuScene"]
+position = Vector2( 0, 38.0976 )
+tile_set = ExtResource( 4 )
+cell_size = Vector2( 70, 70 )
+cell_quadrant_size = 35
+collision_layer = 2
+collision_mask = 4
+format = 1
+tile_data = PoolIntArray( -196611, 2, 0, -196610, 2, 0, -196609, 2, 0, -262144, 2, 0, -262143, 2, 0, -262142, 2, 0, -262141, 2, 0, -262140, 2, 0, -262139, 2, 0, -262138, 2, 0, -262137, 2, 0, -262136, 2, 0, -262135, 2, 0, -262134, 2, 0, -262133, 2, 0, -262132, 2, 0, -262131, 2, 0, -262130, 2, 0, -262129, 2, 0, -262128, 2, 0, -262127, 2, 0, -131075, 2, 0, -131074, 2, 0, -131073, 2, 0, -196608, 2, 0, -196594, 2, 0, -196593, 2, 0, -196592, 2, 0, -196591, 2, 0, -65539, 2, 0, -65538, 2, 0, -65537, 2, 0, -131072, 2, 0, -131064, 5, 0, -131058, 2, 0, -131057, 2, 0, -131056, 2, 0, -131055, 2, 0, -3, 2, 0, -2, 2, 0, -1, 2, 0, -65536, 2, 0, -65522, 2, 0, -65521, 2, 0, -65520, 2, 0, -65519, 2, 0, 65533, 2, 0, 65534, 2, 0, 65535, 2, 0, 0, 2, 0, 4, 5, 0, 13, 5, 0, 14, 2, 0, 15, 2, 0, 16, 2, 0, 17, 2, 0, 131069, 2, 0, 131070, 2, 0, 131071, 2, 0, 65536, 2, 0, 65550, 2, 0, 65551, 2, 0, 65552, 2, 0, 65553, 2, 0, 65556, 2, 0, 196605, 2, 0, 196606, 2, 0, 196607, 2, 0, 131072, 2, 0, 131086, 2, 0, 131087, 2, 0, 131088, 2, 0, 131089, 2, 0, 262141, 2, 0, 262142, 2, 0, 262143, 2, 0, 196608, 2, 0, 196622, 2, 0, 196623, 2, 0, 196624, 2, 0, 196625, 2, 0, 327677, 2, 0, 327678, 2, 0, 327679, 2, 0, 262144, 2, 0, 262158, 2, 0, 262159, 2, 0, 262160, 2, 0, 262161, 2, 0, 393213, 2, 0, 393214, 2, 0, 393215, 2, 0, 327680, 2, 0, 327681, 6, 0, 327684, 7, 0, 327688, 7, 0, 327691, 7, 0, 327693, 6, 0, 327694, 2, 0, 327695, 2, 0, 327696, 2, 0, 327697, 2, 0, 458749, 0, 0, 458750, 0, 0, 458751, 0, 0, 393216, 0, 0, 393217, 0, 0, 393218, 0, 0, 393219, 0, 0, 393220, 0, 0, 393221, 0, 0, 393222, 0, 0, 393223, 0, 0, 393224, 0, 0, 393225, 0, 0, 393226, 0, 0, 393227, 0, 0, 393228, 0, 0, 393229, 0, 0, 393230, 0, 0, 393231, 0, 0, 393232, 0, 0, 393233, 0, 0, 524285, 1, 0, 524286, 1, 0, 524287, 1, 0, 458752, 1, 0, 458753, 1, 0, 458754, 1, 0, 458755, 1, 0, 458756, 1, 0, 458757, 1, 0, 458758, 1, 0, 458759, 1, 0, 458760, 1, 0, 458761, 1, 0, 458762, 1, 0, 458763, 1, 0, 458764, 1, 0, 458765, 1, 0, 458766, 1, 0, 458767, 1, 0, 458768, 1, 0, 458769, 1, 0 )
+
+[node name="Camera" type="Camera2D" parent="MenuScene"]
+position = Vector2( 523.003, 203.994 )
+current = true
+zoom = Vector2( 1.3, 1.3 )
+
+[node name="Player" parent="MenuScene" instance=ExtResource( 7 )]
+position = Vector2( 118.51, 369.062 )
+
+[node name="Gnome" parent="MenuScene" instance=ExtResource( 6 )]
+position = Vector2( 512.362, 407.979 )
+contacts_reported = 1
+contact_monitor = true
+[connection signal="timeout" from="CanvasLayer/MenuGUI/PickToStart/BlinkTimer" to="." method="_on_BlinkTimer_timeout"]
+[connection signal="body_entered" from="MenuScene/Gnome" to="." method="_on_Gnome_body_entered"]

@@ -2,8 +2,7 @@ extends Node
 
 
 func start_game():
-	#TODO Replace with actual start method body
-	get_tree().reload_current_scene()
+	Global.start_game()
 
 func _on_BlinkTimer_timeout() -> void:
 	_toggle_pick_to_start_visibility()
