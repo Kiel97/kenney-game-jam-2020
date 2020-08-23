@@ -28,7 +28,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 6 ), ExtResource( 5 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=3]
 resource_name = "hurt"
 length = 0.1
 tracks/0/type = "value"
@@ -44,7 +44,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 8 ) ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=4]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
@@ -59,8 +59,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 1 ) ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "jump"
+[sub_resource type="Animation" id=5]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
@@ -74,7 +73,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 1 ), ExtResource( 6 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=6]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -91,7 +90,7 @@ tracks/0/keys = {
 }
 
 [node name="Player" type="KinematicBody2D"]
-collision_mask = 54
+collision_mask = 118
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -103,10 +102,10 @@ shape = SubResource( 1 )
 
 [node name="anim" type="AnimationPlayer" parent="."]
 anims/fall = SubResource( 2 )
-anims/hurt = SubResource( 6 )
-anims/idle = SubResource( 3 )
-anims/jump = SubResource( 4 )
-anims/walk = SubResource( 5 )
+anims/hurt = SubResource( 3 )
+anims/idle = SubResource( 4 )
+anims/jump = SubResource( 5 )
+anims/walk = SubResource( 6 )
 
 [node name="MoveBoostDetTimer" type="Timer" parent="."]
 autostart = true

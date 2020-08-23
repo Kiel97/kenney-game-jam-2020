@@ -26,7 +26,7 @@ func _physics_process(delta) -> void:
 	velocity = move_and_slide(velocity, Vector2(0, -1))
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
-		if collision.collider.name == "Hazards":
+		if collision.collider.name == "Hazards" or collision.collider.is_in_group("enemy"):
 			die()
 
 func get_input() -> void:
@@ -90,10 +90,10 @@ func stop_animation() -> void:
 
 func stop_player() -> void:
 	$MoveBoostDetTimer.stop()
+	$CollisionShape2D.call_deferred("set_disabled", true)
 	set_process(false)
 	set_physics_process(false)
 	set_process_input(false)
-	stop_animation()
 
 func die() -> void:
 	$anim.play("hurt")
