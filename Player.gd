@@ -40,6 +40,7 @@ func get_input() -> void:
 	if jump and is_on_floor():
 		velocity.y = get_current_jump_force()
 		self.jump_boost -= JUMP_BOOST_DET_VALUE
+		$Jump_SFX.play()
 
 func update_animation() -> void:
 	if velocity.y < 0:
