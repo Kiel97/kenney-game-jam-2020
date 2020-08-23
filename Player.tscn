@@ -113,4 +113,5 @@ autostart = true
 
 [node name="Jump_SFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
+volume_db = 8.0
 [connection signal="timeout" from="MoveBoostDetTimer" to="." method="_on_MoveBoostDetTimer_timeout"]

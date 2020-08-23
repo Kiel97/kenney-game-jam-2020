@@ -33,4 +33,7 @@ func _on_PlayerCorr_died() -> void:
 	player.stop_player()
 	
 	yield($Lose_SFX, "finished")
+	var extra_timer = get_tree().create_timer(0.5)
+	yield(extra_timer, "timeout")
+	
 	Global.game_over()
