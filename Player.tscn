@@ -11,7 +11,7 @@
 radius = 26.8819
 height = 41.2367
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=6]
 resource_name = "fall"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
@@ -26,7 +26,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 6 ), ExtResource( 5 ) ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=7]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
@@ -84,7 +84,7 @@ position = Vector2( 1.49831, 8.98985 )
 shape = SubResource( 1 )
 
 [node name="anim" type="AnimationPlayer" parent="."]
-anims/fall = SubResource( 2 )
-anims/idle = SubResource( 3 )
+anims/fall = SubResource( 6 )
+anims/idle = SubResource( 7 )
 anims/jump = SubResource( 4 )
 anims/walk = SubResource( 5 )

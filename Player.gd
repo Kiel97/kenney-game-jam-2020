@@ -26,10 +26,10 @@ func get_input() -> void:
 	velocity.x = 0
 	if right:
 		velocity.x += get_current_move_speed()
-		$Sprite.flip_h = false
+		flip_character(false)
 	elif left:
 		velocity.x -= get_current_move_speed()
-		$Sprite.flip_h = true
+		flip_character(true)
 	
 	if jump and is_on_floor():
 		velocity.y = get_current_jump_force()
@@ -49,3 +49,6 @@ func get_current_move_speed() -> float:
 
 func get_current_jump_force() -> float:
 	return BASE_JUMP_SPEED + BASE_JUMP_SPEED * jump_boost
+
+func flip_character(is_left: bool) -> void:
+	$Sprite.flip_h = is_left
