@@ -5,9 +5,12 @@ const BASE_MOVE_SPEED = 500
 const BASE_JUMP_SPEED = -500
 
 var move_boost = 0.0
-var jump_boost = 0.0
+var jump_boost = 1.0
 
 var velocity : Vector2 = Vector2()
+
+func _process(_delta: float) -> void:
+	update_animation()
 
 func _physics_process(delta) -> void:
 	velocity.y += GRAVITY * delta
@@ -28,6 +31,24 @@ func get_input() -> void:
 	
 	if jump and is_on_floor():
 		velocity.y = get_current_jump_force()
+
+func update_animation() -> void:
+	$Sprite.flip_h = velocity.x < 0
+	
+	print(velocity)
+	
+	if velocity.y < 0:
+		$anim.play("jump")
+		print("jump")
+	elif velocity.y > 0:
+		$anim.play("fall")
+		print("fall")
+	elif abs(velocity.x) > 0:
+		$anim.play("walk")
+		print("walk")
+	else:
+		$anim.play("idle")
+		print("idle")
 
 func get_current_move_speed() -> float:
 	return BASE_MOVE_SPEED + BASE_MOVE_SPEED * move_boost
