@@ -26,15 +26,15 @@ func get_input() -> void:
 	velocity.x = 0
 	if right:
 		velocity.x += get_current_move_speed()
+		$Sprite.flip_h = false
 	elif left:
 		velocity.x -= get_current_move_speed()
+		$Sprite.flip_h = true
 	
 	if jump and is_on_floor():
 		velocity.y = get_current_jump_force()
 
 func update_animation() -> void:
-	$Sprite.flip_h = velocity.x < 0
-	
 	if velocity.y < 0:
 		$anim.play("jump")
 	elif velocity.y > 0:
