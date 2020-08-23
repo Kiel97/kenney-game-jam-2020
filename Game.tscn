@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://PlayerCorr.tscn" type="PackedScene" id=1]
 [ext_resource path="res://corruption_tileset.tres" type="TileSet" id=2]
 [ext_resource path="res://Door.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Game.gd" type="Script" id=4]
+[ext_resource path="res://SpeedItem.tscn" type="PackedScene" id=5]
 [ext_resource path="res://images/backgrounds/uncolored_plain.png" type="Texture" id=6]
 
 [node name="Game" type="Node"]
@@ -32,6 +33,7 @@ tile_data = PoolIntArray( -196611, 4, 0, -196610, 4, 0, -131075, 4, 0, -131074, 
 
 [node name="PlayerCorr" parent="GameScene" instance=ExtResource( 1 )]
 position = Vector2( 512.454, 399.508 )
+collision_mask = 6
 
 [node name="Camera" type="Camera2D" parent="GameScene/PlayerCorr"]
 position = Vector2( 13.8861, -194.814 )
@@ -42,4 +44,19 @@ limit_left = -138
 [node name="Door" parent="GameScene" instance=ExtResource( 3 )]
 position = Vector2( 1095.69, 402.573 )
 collision_layer = 0
+
+[node name="SpeedItem" parent="GameScene" instance=ExtResource( 5 )]
+position = Vector2( 641.754, 352.484 )
+
+[node name="SpeedItem2" parent="GameScene" instance=ExtResource( 5 )]
+position = Vector2( 748.134, 355.481 )
+
+[node name="SpeedItem3" parent="GameScene" instance=ExtResource( 5 )]
+position = Vector2( 391.537, 343.495 )
+
+[node name="SpeedItem4" parent="GameScene" instance=ExtResource( 5 )]
+position = Vector2( 280.662, 333.006 )
+
+[node name="SpeedItem5" parent="GameScene" instance=ExtResource( 5 )]
+position = Vector2( 147.313, 339 )
 [connection signal="body_entered" from="GameScene/Door" to="." method="_on_Door_body_entered"]
