@@ -13,6 +13,39 @@ script = ExtResource( 4 )
 
 [node name="GameGUI" type="CanvasLayer" parent="."]
 
+[node name="Control" type="Control" parent="GameGUI"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameGUI/Control"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 200, 0 )
+custom_constants/separation = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MoveBoostBar" type="ProgressBar" parent="GameGUI/Control/VBoxContainer"]
+margin_right = 200.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 0, 14 )
+max_value = 1.0
+step = 0.01
+percent_visible = false
+
+[node name="JumpBoostBar" type="ProgressBar" parent="GameGUI/Control/VBoxContainer"]
+margin_top = 24.0
+margin_right = 200.0
+margin_bottom = 38.0
+rect_min_size = Vector2( 0, 14 )
+max_value = 1.0
+step = 0.1
+percent_visible = false
+
 [node name="GameScene" type="Node2D" parent="."]
 
 [node name="background" type="Sprite" parent="GameScene"]
@@ -75,4 +108,6 @@ position = Vector2( 579.845, 284.678 )
 
 [node name="JumpItem5" parent="GameScene" instance=ExtResource( 7 )]
 position = Vector2( 687.723, 287.675 )
+[connection signal="changed_jump_boost" from="GameScene/PlayerCorr" to="." method="_on_PlayerCorr_changed_jump_boost"]
+[connection signal="changed_move_boost" from="GameScene/PlayerCorr" to="." method="_on_PlayerCorr_changed_move_boost"]
 [connection signal="body_entered" from="GameScene/Door" to="." method="_on_Door_body_entered"]

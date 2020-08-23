@@ -1,5 +1,8 @@
 extends KinematicBody2D
 
+signal changed_jump_boost(value)
+signal changed_move_boost(value)
+
 const GRAVITY = 2000.0
 const BASE_MOVE_SPEED = 500
 const BASE_JUMP_SPEED = -500
@@ -64,7 +67,9 @@ func increase_jump_force(value: float) -> void:
 func set_move_boost(value) -> void:
 	move_boost = value
 	print(move_boost)
+	emit_signal("changed_move_boost", move_boost)
 
 func set_jump_boost(value) -> void:
 	jump_boost = value
 	print(jump_boost)
+	emit_signal("changed_jump_boost", jump_boost)
