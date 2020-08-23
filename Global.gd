@@ -11,3 +11,6 @@ func start_game() -> void:
 
 func finish_game() -> void:
 	get_tree().change_scene("res://WinScene.tscn")
+
+func game_over() -> void:
+	get_tree().change_scene("res://GameOverScene.tscn")

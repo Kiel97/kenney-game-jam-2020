@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://images/characters/Green Player/player_idle.png" type="Texture" id=1]
 [ext_resource path="res://Player.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://images/characters/Green Player/player_fall.png" type="Texture" id=5]
 [ext_resource path="res://images/characters/Green Player/player_jump.png" type="Texture" id=6]
 [ext_resource path="res://images/audio/phaseJump2.ogg" type="AudioStream" id=7]
+[ext_resource path="res://images/characters/Green Player/player_hurt.png" type="Texture" id=8]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 26.8819
@@ -25,6 +26,22 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ ExtResource( 6 ), ExtResource( 5 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "hurt"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 8 ) ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -74,7 +91,7 @@ tracks/0/keys = {
 }
 
 [node name="Player" type="KinematicBody2D"]
-collision_mask = 22
+collision_mask = 54
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -86,6 +103,7 @@ shape = SubResource( 1 )
 
 [node name="anim" type="AnimationPlayer" parent="."]
 anims/fall = SubResource( 2 )
+anims/hurt = SubResource( 6 )
 anims/idle = SubResource( 3 )
 anims/jump = SubResource( 4 )
 anims/walk = SubResource( 5 )

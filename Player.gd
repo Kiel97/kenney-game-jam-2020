@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 signal changed_jump_boost(value)
 signal changed_move_boost(value)
+signal died()
 
 const GRAVITY = 2000.0
 const BASE_MOVE_SPEED = 500
@@ -23,6 +24,10 @@ func _physics_process(delta) -> void:
 	get_input()
 
 	velocity = move_and_slide(velocity, Vector2(0, -1))
+	for i in get_slide_count():
+		var collision = get_slide_collision(i)
+		if collision.collider.name == "Hazards":
+			die()
 
 func get_input() -> void:
 	var left = Input.is_action_pressed("left")
@@ -79,3 +84,18 @@ func set_jump_boost(value) -> void:
 
 func _on_MoveBoostDetTimer_timeout() -> void:
 	self.move_boost -= MOVE_BOOST_DET_VALUE
+
+func stop_animation() -> void:
+	$anim.stop()
+
+func stop_player() -> void:
+	$MoveBoostDetTimer.stop()
+	set_process(false)
+	set_physics_process(false)
+	set_process_input(false)
+	stop_animation()
+
+func die() -> void:
+	$anim.play("hurt")
+	stop_player()
+	emit_signal("died")
