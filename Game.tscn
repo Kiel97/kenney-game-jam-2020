@@ -4,18 +4,18 @@
 [ext_resource path="res://plains_tileset.tres" type="TileSet" id=2]
 [ext_resource path="res://images/fonts/Kenney Future Narrow.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://Game.gd" type="Script" id=4]
-[ext_resource path="res://GreenPlayer.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://images/backgrounds/uncolored_plain.png" type="Texture" id=6]
 [ext_resource path="res://Gnome.tscn" type="PackedScene" id=7]
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=1]
 size = 34
 outline_size = 2
 outline_color = Color( 0, 0, 0, 1 )
 use_filter = true
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=2]
 size = 20
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
@@ -51,7 +51,7 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -81.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 1 )
 text = "Pick gnome to start
 "
 align = 1
@@ -70,7 +70,7 @@ anchor_bottom = 1.0
 margin_left = 5.0
 margin_top = -49.0
 margin_right = 1024.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 2 )
 text = "Created by Kiel97
 Assets by Kenney from Kenney.nl"
 __meta__ = {

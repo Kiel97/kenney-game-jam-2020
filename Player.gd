@@ -1,45 +1,13 @@
 extends KinematicBody2D
 
 const GRAVITY = 2000.0
-const MOVE_SPEED = 500
-const JUMP_SPEED = -960
+const BASE_MOVE_SPEED = 500
+const BASE_JUMP_SPEED = -500
 
-onready var anim_player = $AnimationPlayer
-onready var attack_anim = $Body/ForeArm/AttackAnim
-onready var interact_raycast = $InteractRaycast
+var move_boost = 0.0
+var jump_boost = 0.0
 
 var velocity : Vector2 = Vector2()
-var arm_look_at_mouse: bool = true
-var has_gnome: bool = false setget set_has_gnome
-
-func _ready() -> void:
-	self.has_gnome = false
-
-func _process(_delta: float) -> void:
-	var global_mouse_pos = get_global_mouse_position()
-	flip_sprites(global_mouse_pos > self.position)
-	$Body/Head.look_at(global_mouse_pos)
-	
-	if arm_look_at_mouse:
-		$Body/ForeArm/RotationPoint/Sprite.look_at(global_mouse_pos)
-	
-	interact_raycast.look_at(global_mouse_pos)
-	handle_interactions()
-		
-func handle_interactions() -> void:
-	if interact_raycast.is_colliding():
-		var coll = interact_raycast.get_collider()
-		if coll.name == "Gnome":
-			# print("Press E to pick Gnome...")
-			if Input.is_action_just_pressed("interact"):
-				coll.queue_free()
-				self.has_gnome = true
-				# print("You picked up Gnome. You feel uneasy...")
-
-func _unhandled_input(event: InputEvent) -> void:
-		if event.is_action_pressed("attack") and not attack_anim.is_playing():
-			arm_look_at_mouse = false
-			attack_anim.play("attack")
 
 func _physics_process(delta) -> void:
 	velocity.y += GRAVITY * delta
@@ -54,24 +22,15 @@ func get_input() -> void:
 	
 	velocity.x = 0
 	if right:
-		velocity.x += MOVE_SPEED
-		anim_player.play("walk")
+		velocity.x += get_current_move_speed()
 	elif left:
-		velocity.x -= MOVE_SPEED
-		anim_player.play("walk")
-	else:
-		anim_player.play("idle")
+		velocity.x -= get_current_move_speed()
 	
 	if jump and is_on_floor():
-		velocity.y = JUMP_SPEED
+		velocity.y = get_current_jump_force()
 
-func flip_sprites(is_right: bool) -> void:
-	$Body.scale = Vector2(1,1) if is_right else Vector2(-1,1)
+func get_current_move_speed() -> float:
+	return BASE_MOVE_SPEED + BASE_MOVE_SPEED * move_boost
 
-func set_has_gnome(value: bool) -> void:
-	has_gnome = value
-	$Body/Back.visible = value
-
-func _on_AttackAnim_animation_finished(anim_name: String) -> void:
-	if anim_name == "attack":
-		arm_look_at_mouse = true
+func get_current_jump_force() -> float:
+	return BASE_JUMP_SPEED + BASE_JUMP_SPEED * jump_boost
