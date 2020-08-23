@@ -6,10 +6,10 @@ signal died()
 
 const GRAVITY = 2000.0
 const BASE_MOVE_SPEED = 500
-const BASE_JUMP_SPEED = -500
+const BASE_JUMP_SPEED = -570
 
 const MOVE_BOOST_DET_VALUE = 0.01
-const JUMP_BOOST_DET_VALUE = 0.1
+const JUMP_BOOST_DET_VALUE = 0.05
 
 var move_boost = 0.0 setget set_move_boost
 var jump_boost = 0.0 setget set_jump_boost
