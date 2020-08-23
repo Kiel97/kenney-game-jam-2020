@@ -1,8 +1,8 @@
 extends Node
 
 onready var player = $GameScene/PlayerCorr
-onready var move_boost_bar = $GameGUI/Control/VBoxContainer/MoveBoostBar
-onready var jump_boost_bar = $GameGUI/Control/VBoxContainer/JumpBoostBar
+onready var move_boost_bar = $GameGUI/Control/Container/MoveBoostBar
+onready var jump_boost_bar = $GameGUI/Control/Container/JumpBoostBar
 
 
 func _on_Door_body_entered(body: Node) -> void:
